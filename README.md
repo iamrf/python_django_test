@@ -28,7 +28,11 @@ Write a price updater service with Python that accomplishes these tasks:
 
 Finally, dockerize your script to be used as a standalone service.
 
-## Step 2: Stock Performance Calculation
+### This step is done
+
+Price updater app located in /services folder.
+
+<!-- ## Step 2: Stock Performance Calculation
 
 Now imagine we want to calculate a performance metric for each stock. This fictional performance metric is computationally very expensive and each calculation would take 3 seconds. Here, for simplicity, we simulate the calculation of this performance metric with this simple function:
 
@@ -100,4 +104,4 @@ The API call might take anytime between 1 to 100 second to respond. Write/Rewrit
 
 - The user should receive the result with the least amount of delay after the verification is complete.
 
-> **Note:** Preferably make use of message queueing similar to Step 3 and utilize the microservice framework to your advantage
+> **Note:** Preferably make use of message queueing similar to Step 3 and utilize the microservice framework to your advantage -->
