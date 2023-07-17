@@ -34,6 +34,5 @@ docker-compose up --build -d
 
 
 > **Changes:** Using `entrypoint.sh` Instead of `sleep 5`
-- In the original Dockerfile for Redis, the use of `& sleep 5s` might cause issues as it runs the server in the background, and there could be a race condition between the server startup and the `redis-cli` command. To improve this, we introduced a new entrypoint.sh script.
-
+- In the original Dockerfile for Redis, the use of `& sleep 5s` might cause issues as it runs the server in the background, and there could be a race condition between the server startup and the `redis-cli` command. 
 `entrypoint.sh` waits for Redis to be ready before loading data into the database using the `redis-cli`. The script ensures that the database is populated correctly before the server starts. This avoids potential race conditions and ensures that data is successfully loaded into Redis.
