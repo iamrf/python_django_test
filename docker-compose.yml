@@ -1,0 +1,17 @@
+version: '3'
+services:
+  price_updater:
+    build:
+      context: .
+      dockerfile: services/Dockerfile
+    depends_on:
+      - redis
+
+  redis:
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/data
+    ports:
+      - "6379:6379"

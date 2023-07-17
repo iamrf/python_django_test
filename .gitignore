@@ -2,3 +2,4 @@
 .vscode/
 redis/data/
 .venv
+data/

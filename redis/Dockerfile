@@ -1,10 +1,9 @@
 FROM redis
 
 COPY redis_data.txt /
+COPY entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT nohup bash -c "redis-server --appendonly yes" \ 
-	& sleep 5s \
-    && cat /redis_data.txt | redis-cli --pipe \
-    && redis-cli save \
-    && redis-cli shutdown \
-	&& redis-server
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["entrypoint.sh"]
+CMD ["redis-server", "--appendonly", "yes"]
