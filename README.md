@@ -13,12 +13,12 @@ You need [Docker](https://docs.docker.com/get-docker/) installed on you machine 
 ## Included in the Project
 
 - `services/`: Directory containing the Python scripts for various steps.
--     `services/price_updater.py`: Python script for Step 1 to update price data in the Redis database.
--     `services/price_data.csv`: Sample price data for three fictional stocks needed in the next steps.
+- `services/price_updater.py`: Python script for Step 1 to update price data in the Redis database.
+- `services/price_data.csv`: Sample price data for three fictional stocks needed in the next steps.
 - `redis/`: Directory containing the Docker configuration for Redis.
--     `redis/redis_data.txt`: Initial data to be loaded into the Redis database.
--     `redis/Dockerfile`: Dockerfile for the Redis container, now utilizing entrypoint.sh.
--     `redis/entrypoint.sh`: Bash script for initializing Redis data and saving it to disk.
+- `redis/redis_data.txt`: Initial data to be loaded into the Redis database.
+- `redis/Dockerfile`: Dockerfile for the Redis container, now utilizing entrypoint.sh.
+- `redis/entrypoint.sh`: Bash script for initializing Redis data and saving it to disk.
 - `kafka/`: Directory containing the Docker configuration for Kafka.
 
 
@@ -31,6 +31,7 @@ To run the Price Updater Service, execute the following commands in root directo
 ```
 docker-compose up --build -d
 ```
+
 
 > **Changes:** Using `entrypoint.sh` Instead of `sleep 5`
 - In the original Dockerfile for Redis, the use of `& sleep 5s` might cause issues as it runs the server in the background, and there could be a race condition between the server startup and the `redis-cli` command. To improve this, we introduced a new entrypoint.sh script.
