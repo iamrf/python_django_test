@@ -1,6 +1,12 @@
 import csv
 import json
+import time
 import redis
+import random
+
+def calculate_performance(stock_price):
+	time.sleep(3)
+	return random.randint(1,99)
 
 def update_price_data():
     print("Updating price data...")
@@ -22,17 +28,28 @@ def update_price_data():
             if stock_data_str:
                 stock_data = json.loads(stock_data_str.decode('utf-8'))
             else:
-                # If no existing data, initialize with default values
-                stock_data = {
-                    'id': 0,
-                    'price': [],
-                    'time': [],
-                    'performance': 0,
-                }
+                # If no existing data, initialize a empty dict object
+                stock_data = {}
 
             # Update time and price history
-            stock_data['time'].append(time)
-            stock_data['price'].append(price)
+            if 'time' in stock_data:
+                stock_data['time'].append(time)
+                stock_data['price'].append(price)
+            else:
+                stock_data['time'] = [time]
+                stock_data['price'] = [price]
+                
+            # Check if the price has changed
+            if 'last_price' in stock_data and stock_data['last_price'] == price:
+                # Price hasn't changed, skip performance calculation
+                continue
+
+            # Calculate performance metric
+            performance = calculate_performance(price)
+
+            # Save the performance value and last price in stock_data
+            stock_data['performance'] = performance
+            stock_data['last_price'] = price
 
             # Save the updated stock data in Redis
             try:
